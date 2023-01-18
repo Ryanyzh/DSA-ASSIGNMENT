@@ -142,12 +142,16 @@
     <ClCompile Include="dsa assgnmt.cpp" />
     <ClCompile Include="Post.cpp" />
     <ClCompile Include="Reply.cpp" />
+    <ClCompile Include="RStack.cpp" />
+    <ClCompile Include="TDictionary.cpp" />
     <ClCompile Include="Topic.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Post.h" />
     <ClInclude Include="Reply.h" />
+    <ClInclude Include="RStack.h" />
+    <ClInclude Include="TDictionary.h" />
     <ClInclude Include="Topic.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>

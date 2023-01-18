@@ -30,6 +30,12 @@
     <ClCompile Include="Post.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TDictionary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RStack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -42,6 +48,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Post.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TDictionary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -104,9 +104,9 @@ void displayPostOptions() {
     cout << "+------------------------------------------------------------------------+" << endl;
     cout << "|  Options                                                               |" << endl;
     cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
-    cout << "|  1  | View Post       |  2  | Edit Post       |  3  | Delete Post      |" << endl;
+    cout << "|  1  | View Post(s)    |  2  | Edit Post       |  3  | Delete Post      |" << endl;
     cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
-    cout << "|  4  | Like Post       |  5  | Add Reply       |  6  | Add Reaction     |" << endl;
+    cout << "|  4  | Like Post       |  5  | Add Reply       |  6  | Add Reaction(s)  |" << endl;
     cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
     cout << "|  7  | Search Post     |  8  | Search User     |  9  | Save Data        |" << endl;
     cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;

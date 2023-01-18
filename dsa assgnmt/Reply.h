@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef USER_H //idk what this do
-#define USER_H //idk what this do
-
 #include <string>
 #include "User.h"
 
@@ -29,5 +26,4 @@ class Reply
 		string getRDateTime(); //not implemented
 
 };
-#endif
 

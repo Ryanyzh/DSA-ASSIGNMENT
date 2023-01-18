@@ -25,6 +25,7 @@ string Post::getPContent() {
 	return Pcontent;
 };
 
+
 void Post::setPDateTime() {
 	time_t ttime = time(0);
 	char* dt = ctime(&ttime);

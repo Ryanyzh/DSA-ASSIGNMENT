@@ -20,7 +20,7 @@ TDictionary::~TDictionary() {
 
 int TDictionary::hash(KeyType key) { //use string or int
 	//https://dev.to/muiz6/string-hashing-in-c-1np3
-	int hashValue = 0;
+	int hashValue = 0;  
 	int totalHashValue = 0;
 	//cout << "\n" << endl;
 	for (int pos = 0; pos < key.length(); pos++) {
@@ -127,14 +127,14 @@ bool TDictionary::isEmpty() { return size == 0; }
 
 int TDictionary::getLength() { return size; }
 
-void TDictionary::printAllTopics() {
+void TDictionary::printAllPost() {
 	for (int i = 0; i < MAX_SIZE; i++) {
 		Node* current = new Node;
 		current = items[i];
 		if (current != NULL) {
-			cout << current->key << " : " << current->item.getTopicName() << endl;
+			cout << current->key << " : " << current->item.getPContent() << endl;
 			while (current->next != NULL) {
-				cout << current->next->key << " : " << current->next->item.getTopicName() << endl;
+				cout << current->next->key << " : " << current->next->item.getPContent() << endl;
 				current = current->next;
 			}
 		}

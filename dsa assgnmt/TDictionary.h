@@ -1,12 +1,12 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include "Topic.h"
+#include "Post.h"
 
 using namespace std;
 
 const int MAX_SIZE = 101; //this one need to change
-typedef Topic ItemType;
+typedef Post ItemType;
 typedef string KeyType;
 
 struct Node 
@@ -47,7 +47,7 @@ class TDictionary
 		int getLength();
 
 		//display the topics in the Dictionary
-		void printAllTopics();
+		void printAllPost();
 
 };
 

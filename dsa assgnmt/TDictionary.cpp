@@ -13,66 +13,47 @@ TDictionary::TDictionary() {
 TDictionary::~TDictionary() {
 	for (int i = 0; i < size; i++) {
 		while (items[i] != NULL) {
-			remove(items[i]->key);
+			remove(items[i]->tkey);
 		}
 	}
 }
 
 int TDictionary::hash(KeyType key) { //use string or int
 	//https://dev.to/muiz6/string-hashing-in-c-1np3
-	int hashValue = 0;  
-	int totalHashValue = 0;
-	//cout << "\n" << endl;
-	for (int pos = 0; pos < key.length(); pos++) {
-		if (isalpha(key[pos]))
-		{
-			if (isupper(key[pos])) {
-				hashValue = (int)key[pos] - (int)'A';
-			}
-			else {
-				hashValue = (int)key[pos] - (int)'a' + 26;
-			}
-		}
-		else {
-			return 0;
-		}
-		totalHashValue = totalHashValue * 52 + hashValue;
-		totalHashValue %= MAX_SIZE;
-		//totalHashValue = hashValue * (pos + 1) + totalHashValue;
+	size_t hashCode = 0;
+	for (int i = 0; i < key.length(); i++) {
+		hashCode += (key[i] * (int)pow(31, i)) % MAX_SIZE;
 	}
-	//cout << totalHashValue << endl;
-	//cout << totalHashValue % MAX_SIZE << endl;
-
-	return totalHashValue;
+	return hashCode % MAX_SIZE;
 }
 
 bool TDictionary::add(KeyType newKey, ItemType newItem) {
 	int index = hash(newKey);
 	if (items[index] == NULL) {
-		Node* newNode = new Node;
-		newNode->key = newKey;
-		newNode->item = newItem;
-		newNode->next = NULL;
+		TNode* newNode = new TNode;
+		newNode->tkey = newKey;
+		newNode->titem = newItem;
+		newNode->tnext = NULL;
 		items[index] = newNode;
 	}
 	else {
-		Node* current = items[index];
-		if (current->key == newKey) {
+		TNode* current = items[index];
+		if (current->tkey == newKey) {
 			cout << newKey << " already exists." << endl;
 			return false;
 		}
-		while (current->next != NULL) {
-			current = current->next;
-			if (current->key == newKey) {
+		while (current->tnext != NULL) {
+			current = current->tnext;
+			if (current->tkey == newKey) {
 				cout << newKey << " already exists." << endl;
 				return false;
 			}
 		}
-		Node* newNode2 = new Node;
-		newNode2->key = newKey;
-		newNode2->item = newItem;
-		newNode2->next = NULL;
-		current->next = newNode2;
+		TNode* newNode2 = new TNode;
+		newNode2->tkey = newKey;
+		newNode2->titem = newItem;
+		newNode2->tnext = NULL;
+		current->tnext = newNode2;
 	}
 	size++;
 	return true;
@@ -81,24 +62,24 @@ bool TDictionary::add(KeyType newKey, ItemType newItem) {
 void TDictionary::remove(KeyType key) {
 	int index = hash(key);
 	if (items[index] != NULL) {
-		Node* removal = new Node;
-		Node* current = new Node;
+		TNode* removal = new TNode;
+		TNode* current = new TNode;
 		current = items[index];
-		if (current->key == key) {
-			items[index] = current->next;
-			current->next = NULL;
+		if (current->tkey == key) {
+			items[index] = current->tnext;
+			current->tnext = NULL;
 			delete current;
 		}
 		else {
-			while (current->next != NULL) {
-				removal = current->next;
-				if (removal->key == key) {
-					current->next = removal->next;
-					removal->next = NULL;
+			while (current->tnext != NULL) {
+				removal = current->tnext;
+				if (removal->tkey == key) {
+					current->tnext = removal->tnext;
+					removal->tnext = NULL;
 					delete removal;
 				}
 				else {
-					current = current->next;
+					current = current->tnext;
 				}
 			}
 		}
@@ -110,13 +91,13 @@ void TDictionary::remove(KeyType key) {
 ItemType TDictionary::get(KeyType key) {
 	int index = hash(key);
 	if (items[index] != NULL) {
-		Node* current = new Node;
+		TNode* current = new TNode;
 		current = items[index];
-		while (current->next != NULL) {
-			if (current->key == key) {
-				return current->item;
+		while (current->tnext != NULL) {
+			if (current->tkey == key) {
+				return current->titem;
 			}
-			current = current->next;
+			current = current->tnext;
 		}
 	}
 	//need to return here?
@@ -129,13 +110,13 @@ int TDictionary::getLength() { return size; }
 
 void TDictionary::printAllPost() {
 	for (int i = 0; i < MAX_SIZE; i++) {
-		Node* current = new Node;
+		TNode* current = new TNode;
 		current = items[i];
 		if (current != NULL) {
-			cout << current->key << " : " << current->item.getPContent() << endl;
-			while (current->next != NULL) {
-				cout << current->next->key << " : " << current->next->item.getPContent() << endl;
-				current = current->next;
+			cout << current->tkey << " : " << current->titem.getTopicName() << endl;
+			while (current->tnext != NULL) {
+				cout << current->tnext->tkey << " : " << current->tnext->titem.getTopicName() << endl;
+				current = current->tnext;
 			}
 		}
 	}

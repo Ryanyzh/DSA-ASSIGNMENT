@@ -9,25 +9,37 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
 using namespace std;
 
 void displayBanner();             // function to display banner
 void displayTopics();             // function to display topics
-void displayPostOptions();
+void displayMainMenu();
+void displayPostMenu();
 int getOptionInput();
+int hashing(string s);
 
 int main()
 {
     int mainOption = -1;
     displayBanner();
-    //displayTopics();
-    displayPostOptions();
+    for (int abc = 0; abc < 10; abc++) {
+        string s = "";
+        cout << "Enter string: ";
+        cin >> s;
+        cout << "hash: " << hashing(s) << endl;
+    }
 
+    //displayTopics();
+    //displayPostMenu();
+
+    /*
     while (mainOption == -1) {
-        displayPostOptions();
+        displayPostMenu();
         mainOption = getOptionInput();
     }
     
+
     switch (mainOption) {
     case 1:
         cout << "1" << endl;
@@ -69,6 +81,7 @@ int main()
         cout << "Exiting Programme" << endl;
         break;
     }
+    */
 
 
     return 0;
@@ -99,7 +112,19 @@ void displayTopics()
 };
 
 
-void displayPostOptions() {
+void displayMainMenu() {
+    cout << "\n\n" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|  Options                                                               |" << endl;
+    cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
+    cout << "|  1  | View Topics     |  2  | Search Users    |  3  | Search Topics    |" << endl;
+    cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
+    cout << "|  0  | Exit Program                                                     |" << endl;
+    cout << "+-----+------------------------------------------------------------------+" << endl;
+};
+
+
+void displayPostMenu() {
     cout << "\n\n" << endl;
     cout << "+------------------------------------------------------------------------+" << endl;
     cout << "|  Options                                                               |" << endl;
@@ -108,20 +133,28 @@ void displayPostOptions() {
     cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
     cout << "|  4  | Like Post       |  5  | Add Reply       |  6  | Add Reaction(s)  |" << endl;
     cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
-    cout << "|  7  | Search Post     |  8  | Search User     |  9  | Save Data        |" << endl;
-    cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
-    cout << "|  0  | Exit Program                                                     |" << endl;
-    cout << "+-----+------------------------------------------------------------------+" << endl;
-};
+    cout << "|  7  | Search Post     |  0  | Exit Program                             |" << endl;
+    //cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
+    //cout << "+-----+------------------------------------------------------------------+" << endl;
+}
 
 
 int getOptionInput() {
     int input;
-    cout << "\n\n" << endl;
-    cout << "_________________________________________________________________________\n" << endl;
+    //cout << "\n\n" << endl;
+    cout << "__________________________________________________________________________\n" << endl;
     cout << ">>  Select an option to continue:  ";
     cin >> input;
-    cout << "_________________________________________________________________________" << endl;
+    cout << "__________________________________________________________________________" << endl;
     return input;
+}
+
+int hashing(string str) {
+    size_t hashCode = 0;
+    for (int i = 0; i < str.length(); i++) {
+        hashCode += (str[i] * (int)pow(31, i))%31;
+    }
+    cout << "hello: " << hashCode << endl;;
+    return hashCode % 31;
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Reply.h"
+#include "RStack.h"
 #include <string>
 #include <ctime>
 
@@ -15,6 +16,8 @@ class Post
 		User user;
 		int likes;
 		//Array reactions;
+		RNode replypointer;
+		
 
 	public:
 		Post();

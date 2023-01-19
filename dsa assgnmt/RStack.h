@@ -6,16 +6,16 @@ using namespace std;
 
 typedef Reply ItemType;
 
-struct Node
+struct RNode
 {
-	ItemType item;
-	Node* next;
+	ItemType ritem;
+	RNode* rnext;
 };
 
 class RStack
 {
 private:
-	Node* topNode;
+	RNode* rTopNode;
 
 public:
 	RStack();

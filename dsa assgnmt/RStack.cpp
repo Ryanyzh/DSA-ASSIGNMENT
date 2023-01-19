@@ -5,21 +5,21 @@
 using namespace std;
 
 RStack::RStack() {
-	topNode = NULL;
+	rTopNode = NULL;
 };
 
 RStack::~RStack() {
-	Node* current = NULL;
-	while (topNode->next != NULL) {
-		current = topNode;
-		topNode = topNode->next;
-		current->next = NULL;
+	RNode* current = NULL;
+	while (rTopNode->rnext != NULL) {
+		current = rTopNode;
+		rTopNode = rTopNode->rnext;
+		current->rnext = NULL;
 		delete current;
 	}
 }
 
 bool RStack::isEmpty() {
-	if (topNode == NULL) {
+	if (rTopNode == NULL) {
 		return true;
 	}
 	else {
@@ -28,12 +28,12 @@ bool RStack::isEmpty() {
 }
 
 bool RStack::push(ItemType item) {
-	Node* newNode = new Node;
-	newNode->item = item;
-	newNode->next = NULL;
+	RNode* newNode = new RNode;
+	newNode->ritem = item;
+	newNode->rnext = NULL;
 
-	newNode->next = topNode; //set new node's pointer to point to node pointed to by topNode
-	topNode = newNode; //set topNode(pointer) to point to new Node
+	newNode->rnext = rTopNode; //set new node's pointer to point to node pointed to by topNode
+	rTopNode = newNode; //set topNode(pointer) to point to new Node
 
 	return true;
 }
@@ -41,27 +41,27 @@ bool RStack::push(ItemType item) {
 
 ItemType RStack::getTop() {
 	if (!isEmpty()) {
-		return topNode->item;
+		return rTopNode->ritem;
 	}
 	return ItemType();
 }
 
 void RStack::displayInOrder() {
-	Node* currentNode = new Node;
-	currentNode = topNode;
+	RNode* currentNode = new RNode;
+	currentNode = rTopNode;
 	do {
-		cout << "Item is: " << currentNode->item.getRContent() << endl;
-		currentNode = currentNode->next;
+		cout << "Item is: " << currentNode->ritem.getRContent() << endl;
+		currentNode = currentNode->rnext;
 	} while (currentNode != NULL);
 }
 
 void RStack::displayInOrderOfInsertion() {
 	RStack newStack;
-	Node* current = new Node;
-	current = topNode;
+	RNode* current = new RNode;
+	current = rTopNode;
 	while (current != NULL) {
-		newStack.push(current->item);
-		current = current->next;
+		newStack.push(current->ritem);
+		current = current->rnext;
 	}
 	newStack.displayInOrder();
 }

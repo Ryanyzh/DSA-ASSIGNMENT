@@ -36,6 +36,15 @@
     <ClCompile Include="RStack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PLinkedList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ULinkedList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ReactionList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -54,6 +63,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PLinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ULinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReactionList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

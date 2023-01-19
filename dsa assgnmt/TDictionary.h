@@ -1,25 +1,26 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include "Post.h"
+#include "Topic.h"
 
 using namespace std;
 
-const int MAX_SIZE = 101; //this one need to change
-typedef Post ItemType;
+const int MAX_SIZE = 31; //this one need to change
+const int PRIME_CONST = 31;
+typedef Topic ItemType;
 typedef string KeyType;
 
-struct Node 
+struct TNode 
 {
-	KeyType key;
-	ItemType item;
-	Node* next; //or use hashnext;
+	KeyType tkey;
+	ItemType titem;
+	TNode* tnext; //or use hashnext;
 };
 
 class TDictionary
 {
 	private:
-		Node* items[MAX_SIZE];
+		TNode* items[MAX_SIZE];
 		int size;
 	public:
 		//constructor

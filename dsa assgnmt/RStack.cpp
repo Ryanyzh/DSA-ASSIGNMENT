@@ -9,13 +9,13 @@ RStack::RStack() {
 };
 
 RStack::~RStack() {
-	RNode* current = NULL;
+	/*RNode* current = NULL;
 	while (rTopNode->rnext != NULL) {
 		current = rTopNode;
 		rTopNode = rTopNode->rnext;
 		current->rnext = NULL;
 		delete current;
-	}
+	}*/
 }
 
 bool RStack::isEmpty() {

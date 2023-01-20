@@ -10,6 +10,10 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include "Post.h"
+#include "RStack.h"
+#include "Reply.h"
+
 using namespace std;
 
 void displayBanner();             // function to display banner

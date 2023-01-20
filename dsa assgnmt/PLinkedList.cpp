@@ -5,7 +5,7 @@
 using namespace std;
 
 // constructor
-PLinkedList::PLinkedList() { size = 0; }
+PLinkedList::PLinkedList() { size = 0; pFirstNode = NULL; }
 
 PLinkedList::~PLinkedList()
 {

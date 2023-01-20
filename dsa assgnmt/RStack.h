@@ -16,8 +16,8 @@ class RStack
 			RNode* rnext;
 		};
 
-	protected:
 		RNode* rTopNode;
+		
 
 	public:
 		RStack();

@@ -2,6 +2,7 @@
 
 #include "Reply.h"
 #include "RStack.h"
+#include "User.h"
 #include <string>
 #include <ctime>
 
@@ -16,7 +17,7 @@ class Post
 		User user;
 		int likes;
 		//Array reactions;
-		RNode* replypointer;
+		RStack replyStack;
 		
 
 	public:
@@ -32,5 +33,10 @@ class Post
 		string getPTitle();
 		string getPContent();
 		string getPDateTime();
+		RStack getRStack();
+
+		bool isRStackEmpty();
+
+		bool addReply(Reply reply);
 };
 

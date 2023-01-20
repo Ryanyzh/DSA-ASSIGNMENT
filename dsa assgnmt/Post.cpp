@@ -10,7 +10,8 @@ Post::Post() {
 	Pcontent = "";
 	Pdatetime = { nullptr };
 	likes = 0;
-	//user = NULL;  HOW TO SET THE USER TO NULL?
+	user = User();  //HOW TO SET THE USER TO NULL?
+	replyStack = RStack() ;
 };
 
 Post::~Post() {
@@ -24,6 +25,14 @@ string Post::getPTitle() {
 string Post::getPContent() {
 	return Pcontent;
 };
+
+RStack Post::getRStack() {
+	return replyStack;
+}
+
+bool Post::isRStackEmpty() {
+	return replyStack.isEmpty();
+}
 
 
 void Post::setPDateTime() {
@@ -39,3 +48,9 @@ void Post::setPTitle(string pt) {
 void Post::setPContent(string pc) {
 	Pcontent = pc;
 };
+
+bool Post::addReply(Reply reply) {
+	return replyStack.push(reply);
+}
+
+

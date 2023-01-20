@@ -83,7 +83,7 @@ void PLinkedList::remove(int index)
 }
 
 // get an item at a specified position of the list
-ItemType PLinkedList::get(int index)
+PLinkedList::ItemType PLinkedList::get(int index)
 {
 	PNode* current = new PNode;
 	if (index <= size) {

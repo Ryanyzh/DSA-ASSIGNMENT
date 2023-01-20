@@ -8,9 +8,10 @@ class Topic
 {
 	private:
 		string topicName;
-		PNode* postPointer;
+		
 
 	public:
+		PLinkedList::PNode* postPointer;
 		Topic();
 		~Topic();
 		string getTopicName();

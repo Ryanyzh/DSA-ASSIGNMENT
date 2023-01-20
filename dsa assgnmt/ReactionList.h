@@ -3,10 +3,12 @@
 using namespace std;
 
 const int MAX_SIZE = 3;
-typedef int ItemType;
+
 
 class ReactionList
 {
+	typedef int ItemType;
+
 	private:
 		ItemType items[MAX_SIZE];
 		int      size;

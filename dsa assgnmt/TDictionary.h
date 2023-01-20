@@ -7,19 +7,22 @@ using namespace std;
 
 const int MAX_SIZE = 31; //this one need to change
 const int PRIME_CONST = 31;
-typedef Topic ItemType;
-typedef string KeyType;
 
-struct TNode 
-{
-	KeyType tkey;
-	ItemType titem;
-	TNode* tnext; //or use hashnext;
-};
+
 
 class TDictionary
 {
+	typedef Topic ItemType;
+	typedef string KeyType;
+
 	private:
+		struct TNode
+		{
+			KeyType tkey;
+			ItemType titem;
+			TNode* tnext; //or use hashnext;
+		};
+
 		TNode* items[MAX_SIZE];
 		int size;
 	public:

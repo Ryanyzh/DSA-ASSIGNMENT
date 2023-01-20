@@ -4,16 +4,18 @@
 
 using namespace std;
 
-typedef Post ItemType;
 
-struct PNode {
-	ItemType pitem;
-	PNode* pnext;
-};
 
 class PLinkedList
 {
+	typedef Post ItemType;
+
 	private:
+		struct PNode {
+			ItemType pitem;
+			PNode* pnext;
+		};
+
 		PNode* pFirstNode;
 		int size;
 

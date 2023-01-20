@@ -88,7 +88,7 @@ void TDictionary::remove(KeyType key) {
 	size--;
 }
 
-ItemType TDictionary::get(KeyType key) {
+TDictionary::ItemType TDictionary::get(KeyType key) {
 	int index = hash(key);
 	if (items[index] != NULL) {
 		TNode* current = new TNode;

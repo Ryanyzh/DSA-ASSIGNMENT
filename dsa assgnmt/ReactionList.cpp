@@ -48,7 +48,7 @@ void ReactionList::remove(int index)
 }
 
 // get an item at a specified position of the list (retrieve)
-ItemType ReactionList::get(int index)
+ReactionList::ItemType ReactionList::get(int index)
 {
 	bool success = (index >= 0) && (index < size);
 	if (success)

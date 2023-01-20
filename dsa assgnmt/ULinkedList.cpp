@@ -84,7 +84,7 @@ void ULinkedList::remove(int index)
 }
 
 // get an item at a specified position of the list
-ItemType ULinkedList::get(int index)
+ULinkedList::ItemType ULinkedList::get(int index)
 {
 	UNode* current = new UNode;
 	if (index <= size) {

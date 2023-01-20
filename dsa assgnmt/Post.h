@@ -16,7 +16,7 @@ class Post
 		User user;
 		int likes;
 		//Array reactions;
-		RNode replypointer;
+		RNode* replypointer;
 		
 
 	public:

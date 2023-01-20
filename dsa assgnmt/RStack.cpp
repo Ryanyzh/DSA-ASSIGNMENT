@@ -39,7 +39,7 @@ bool RStack::push(ItemType item) {
 }
 
 
-ItemType RStack::getTop() {
+RStack::ItemType RStack::getTop() {
 	if (!isEmpty()) {
 		return rTopNode->ritem;
 	}

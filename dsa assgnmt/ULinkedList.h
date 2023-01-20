@@ -4,46 +4,50 @@
 
 using namespace std;
 
-typedef User ItemType;
 
-struct UNode {
-	ItemType uitem;
-	UNode* unext;
-};
+
+
 
 class ULinkedList
 {
-private:
-	UNode* uFirstNode;
-	int size;
+	typedef User ItemType;
 
-public:
-	//constructor
-	ULinkedList();
+	private:
+		struct UNode {
+			ItemType uitem;
+			UNode* unext;
+		};
 
-	//destrcutor
-	~ULinkedList();
+		UNode* uFirstNode;
+		int size;
 
-	//add an item to the back of the list
-	bool add(ItemType item);
+	public:
+		//constructor
+		ULinkedList();
 
-	//add an item at a specified position in the list
-	bool add(int index, ItemType item);
+		//destrcutor
+		~ULinkedList();
 
-	//remove an item at a specified position of the list
-	void remove(int index);
+		//add an item to the back of the list
+		bool add(ItemType item);
 
-	//get an item at a specified position of the list
-	ItemType get(int index);
+		//add an item at a specified position in the list
+		bool add(int index, ItemType item);
 
-	//check if the size of the list is empty
-	bool isEmpty();
+		//remove an item at a specified position of the list
+		void remove(int index);
 
-	//check the size of the list
-	int getLength();
+		//get an item at a specified position of the list
+		ItemType get(int index);
 
-	//display all the items in the list
-	void print();
+		//check if the size of the list is empty
+		bool isEmpty();
+
+		//check the size of the list
+		int getLength();
+
+		//display all the items in the list
+		void print();
 
 };
 

@@ -66,17 +66,32 @@ bool PLinkedList::add(int index, ItemType item)
 void PLinkedList::remove(int index)
 {
 	if (index <= size) {
+		
 		if (index == 0) {
+			PNode* tempNode = pFirstNode;
 			pFirstNode = pFirstNode->pnext;
+
+			// Set next pointer to null
+			tempNode->pnext = NULL;
+			// Deconstruct replies in the post obj
+			tempNode->pitem.~Post();
+			// Delete node which contains post obj
+			delete tempNode;
 		}
 		else {
 			PNode* current = pFirstNode;
-			PNode* previous = current;
-			for (index; index > 0; index--) {
-				previous = current;
+			for (int i = 0; i < index - 1; i++) {
 				current = current->pnext;
 			}
-			previous->pnext = current->pnext;
+			PNode* tempNode = current->pnext;
+			current->pnext = current->pnext->pnext;
+
+			// Set next pointer to null 
+			tempNode->pnext = NULL;
+			// Deconstruct replies in the post obj
+			tempNode->pitem.~Post();
+			// Delete node which contains post obj
+			delete tempNode;
 		}
 	}
 

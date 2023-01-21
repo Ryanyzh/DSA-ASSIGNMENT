@@ -15,7 +15,10 @@ Post::Post() {
 };
 
 Post::~Post() {
-	//idk
+	// Deconstruct replyStack
+	replyStack.~RStack();
+	// besides besides deconstructing the reply stack,
+	// is there anything else to delete?
 };
 
 string Post::getPTitle() {
@@ -29,11 +32,6 @@ string Post::getPContent() {
 RStack Post::getRStack() {
 	return replyStack;
 }
-
-bool Post::isRStackEmpty() {
-	return replyStack.isEmpty();
-}
-
 
 void Post::setPDateTime() {
 	time_t ttime = time(0);

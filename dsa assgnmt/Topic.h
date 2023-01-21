@@ -14,8 +14,17 @@ class Topic
 		//PLinkedList::PNode* postPointer;
 		Topic();
 		~Topic();
-		string getTopicName();
-		void setTopicName(string);
 		
+		//Topic Setter 
+		void setTopicName(string);
+
+		//Topic getter
+		string getTopicName();
+		
+		//Add post to topic
+		bool addPost(Post post);
+
+		//Remove post from topic
+		void removePost(int index);
 };
 

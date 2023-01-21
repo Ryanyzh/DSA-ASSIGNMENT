@@ -16,27 +16,26 @@ class Post
 		char* Pdatetime;
 		User user;
 		int likes;
-		//Array reactions;
+		//Array reactions (To be implemented);
 		RStack replyStack;
 		
 
 	public:
 		Post();
 		~Post();
-
+		// Post setters
 		void setPDateTime();
 		void setPTitle(string);
 		void setPContent(string);
 		void setLikes(int);
 
-
+		//Post getters
 		string getPTitle();
 		string getPContent();
 		string getPDateTime();
 		RStack getRStack();
 
-		bool isRStackEmpty();
-
+		//Add reply to post
 		bool addReply(Reply reply);
 };
 

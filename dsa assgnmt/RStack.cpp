@@ -9,13 +9,9 @@ RStack::RStack() {
 };
 
 RStack::~RStack() {
-	/*RNode* current = NULL;
-	while (rTopNode->rnext != NULL) {
-		current = rTopNode;
-		rTopNode = rTopNode->rnext;
-		current->rnext = NULL;
-		delete current;
-	}*/
+	while (!isEmpty()) {
+		pop();
+	}
 }
 
 bool RStack::isEmpty() {
@@ -38,6 +34,16 @@ bool RStack::push(ItemType item) {
 	return true;
 }
 
+bool RStack::pop() {
+	if (!isEmpty()) {
+		RNode* tempNode = rTopNode;
+		rTopNode = rTopNode->rnext;
+		tempNode->rnext = NULL;
+		delete tempNode;
+		return true;
+	}
+	return false;
+}
 
 RStack::ItemType RStack::getTop() {
 	if (!isEmpty()) {

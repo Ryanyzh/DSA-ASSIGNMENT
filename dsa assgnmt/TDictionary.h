@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const int MAX_SIZE = 31; //this one need to change
+const int HT_MAX_SIZE = 31; //this one need to change
 const int PRIME_CONST = 31;
 
 
@@ -23,7 +23,7 @@ class TDictionary
 			TNode* tnext; //or use hashnext;
 		};
 
-		TNode* items[MAX_SIZE];
+		TNode* items[HT_MAX_SIZE];
 		int size;
 	public:
 		//constructor

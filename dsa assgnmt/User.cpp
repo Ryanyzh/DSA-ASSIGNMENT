@@ -16,6 +16,10 @@ string User::getUsername() {
 	return username;
 };
 
+string User::getPassword() {
+	return password;
+};
+
 void User::setUsername(string u) {
 	username = u;
 };

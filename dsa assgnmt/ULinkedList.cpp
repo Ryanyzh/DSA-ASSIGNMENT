@@ -116,3 +116,18 @@ void ULinkedList::print()
 		tempPointer = tempPointer->unext;
 	}
 }
+
+
+bool ULinkedList::checkCredentials(string u, string p) {
+	UNode* tempPointer;
+	tempPointer = uFirstNode;
+
+	while (tempPointer != NULL) {
+		if (u == tempPointer->uitem.getUsername() && p == tempPointer->uitem.getPassword()) {
+			return true;
+			break;
+		}
+		tempPointer = tempPointer->unext;
+	}
+	return false;
+}

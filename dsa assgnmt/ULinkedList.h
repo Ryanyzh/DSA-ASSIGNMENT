@@ -49,6 +49,8 @@ class ULinkedList
 		//display all the items in the list
 		void print();
 
+		//check if user input correspond to the saved credentials
+		bool checkCredentials(string u, string p);
 };
 
 

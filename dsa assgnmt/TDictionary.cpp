@@ -5,7 +5,7 @@ using namespace std;
 
 TDictionary::TDictionary() {
 	size = 0;
-	for (int i = 0; i < MAX_SIZE; i++) {
+	for (int i = 0; i < HT_MAX_SIZE; i++) {
 		items[i] = NULL;
 	}
 }
@@ -22,9 +22,9 @@ int TDictionary::hash(KeyType key) { //use string or int
 	//https://dev.to/muiz6/string-hashing-in-c-1np3
 	size_t hashCode = 0;
 	for (int i = 0; i < key.length(); i++) {
-		hashCode += (key[i] * (int)pow(31, i)) % MAX_SIZE;
+		hashCode += (key[i] * (int)pow(31, i)) % HT_MAX_SIZE;
 	}
-	return hashCode % MAX_SIZE;
+	return hashCode % HT_MAX_SIZE;
 }
 
 bool TDictionary::add(KeyType newKey, ItemType newItem) {
@@ -109,7 +109,7 @@ bool TDictionary::isEmpty() { return size == 0; }
 int TDictionary::getLength() { return size; }
 
 void TDictionary::printAllPost() {
-	for (int i = 0; i < MAX_SIZE; i++) {
+	for (int i = 0; i < HT_MAX_SIZE; i++) {
 		TNode* current = new TNode;
 		current = items[i];
 		if (current != NULL) {

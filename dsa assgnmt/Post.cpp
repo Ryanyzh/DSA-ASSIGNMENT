@@ -17,8 +17,6 @@ Post::Post() {
 Post::~Post() {
 	// Deconstruct replyStack
 	replyStack.~RStack();
-	// besides besides deconstructing the reply stack,
-	// is there anything else to delete?
 };
 
 string Post::getPTitle() {

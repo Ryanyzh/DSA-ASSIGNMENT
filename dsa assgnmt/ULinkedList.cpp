@@ -5,7 +5,11 @@
 using namespace std;
 
 // constructor
-ULinkedList::ULinkedList() { size = 0; }
+ULinkedList::ULinkedList() 
+{ 
+	size = 0; 
+	uFirstNode = NULL;
+}
 
 ULinkedList::~ULinkedList()
 {

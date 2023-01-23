@@ -49,6 +49,7 @@ bool validateUser(string username, string password);
 bool validateUsernameInput(string username);
 bool validatePasswordInput(string password);
 bool checkSpecialCharacters(string p);
+bool checkInteger(string input);
 
 
 
@@ -83,38 +84,42 @@ int main()
     pageState = 1;
     displayBanner();
     while ((currentUser.getUsername() != "" || currentUser.getPassword() != "") && mainOption != 0 && pageState == 1) {
+        while (!count(mainOptions.begin(), mainOptions.end(), mainOption)) {
+            displayMainMenu();
+            mainOption = getOptionInput();
+        }
         if (count(mainOptions.begin(), mainOptions.end(), mainOption)) {
             if (mainOption == 1) {
-                displayTopics();
+                topicDictionary.displayTopics();
+                mainOption = -1;
             }
             else if (mainOption == 2) {
                 Topic newTopic = Topic();
-                string topicName;
+                string topicName = "";
                 cout << endl;
                 cout << ">>  Enter new Topic name:  ";
-                cin >> topicName;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                getline(cin, topicName);
                 cout << endl;
 
                 newTopic.setTopicName(topicName);
                 topicDictionary.add(topicName, newTopic);
-                mainOption = 999;
+                mainOption = -1;
             }
             else if (mainOption == 3) {
                 cout << "searching users" << endl;
+                mainOption = -1;
                 // Insert Codes Here
             }
             else if (mainOption == 4) {
                 cout << "searching topics" << endl;
+                mainOption = -1;
                 // Insert Codes Here
             }
             else {
                 pageState = 2;
                 break;
             }
-        }
-        else {
-            displayMainMenu();
-            mainOption = getOptionInput();
         }
     }
 
@@ -385,7 +390,7 @@ bool displaySignUpScreen() {
     cout << char(191) << endl;
 
     cout << "|                                                                        |" << endl;
-    cout << "                  Please Sign Up Below For A New Account                  " << endl;
+    cout << "|                 Please Sign Up Below For A New Account                 |" << endl;
     cout << "|                                                                        |" << endl;
 
     cout << char(192);
@@ -478,13 +483,44 @@ bool validateUser(string usernameInput, string passwordInput) {
 
 
 int getOptionInput() {
-    int input;
-    cout << endl;
-    cout << ">>  Select an option to continue:  ";
-    cin >> input;
-    cout << endl;
-    return input;
+    bool isInteger = false;
+    string input;
+    while (!isInteger) {
+        cout << endl;
+        cout << ">>  Select an option to continue:  ";
+        cin >> input;
+        cout << endl;
+        isInteger = checkInteger(input);
+        cout << "[ERROR] Only (integer) numbers are accepted. Pls try again." << "\342\230\272" << "\t" << endl;
+    }
+    
+    return stoi(input);
 }
+
+
+
+bool checkInteger(string input)
+{
+    bool isNeg = false;
+    int itr = 0;
+    if (input.size() == 0)
+        return false;
+    if (input[0] == '-')
+    {
+        isNeg = true;
+        itr = 1;
+    }
+
+    for (int i = itr; i < input.size(); i++)
+    {
+        if (!isdigit(input[i]))
+            return false;
+    }
+    return true;
+}
+
+
+
 
 int hashing(string str) {
     size_t hashCode = 0;

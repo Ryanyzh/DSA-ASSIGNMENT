@@ -109,6 +109,7 @@ bool TDictionary::isEmpty() { return size == 0; }
 int TDictionary::getLength() { return size; }
 
 void TDictionary::displayTopics() {
+	int counter = 1;
 	int spacing = 0;
 	cout << "\n\n" << endl;
 	cout << "+------------------------------------------------------------------------+" << endl;
@@ -118,22 +119,48 @@ void TDictionary::displayTopics() {
 		TNode* current = new TNode;
 		current = items[i];
 		if (current != NULL) {
-			spacing = 64 - 3 - current->titem.getTopicName().length();
-			cout << "|   " << i+1 << "   |     " << current->titem.getTopicName();
-			for (int spaces = 0; spaces < spacing; spaces++) {
-				cout << " ";
-			}
-			cout << "|" << endl;
-			cout << "+------------------------------------------------------------------------+" << endl;
-			//cout << current->tkey << " : " << current->titem.getTopicName() << endl;
-			while (current->tnext != NULL) {
-				spacing = 64 - 3 - current->titem.getTopicName().length();
-				cout << "|   " << i + 1 << "   |     " << current->titem.getTopicName();
+			spacing = 64 - 5 - (int)current->titem.getTopicName().length();
+			if (counter < 10) {
+				cout << "|   " << counter << "   |     " << current->titem.getTopicName();
 				for (int spaces = 0; spaces < spacing; spaces++) {
 					cout << " ";
 				}
 				cout << "|" << endl;
 				cout << "+------------------------------------------------------------------------+" << endl;
+				counter++;
+			}
+			else {
+				cout << "|  " << counter << "   |     " << current->titem.getTopicName();
+				for (int spaces = 0; spaces < spacing; spaces++) {
+					cout << " ";
+				}
+				cout << "|" << endl;
+				cout << "+------------------------------------------------------------------------+" << endl;
+				counter++;
+			}
+			
+			//cout << current->tkey << " : " << current->titem.getTopicName() << endl;
+			while (current->tnext != NULL) {
+				spacing = 64 - 5 - (int)current->titem.getTopicName().length();
+				if (counter < 10) {
+					cout << "|   " << counter << "   |     " << current->titem.getTopicName();
+					for (int spaces = 0; spaces < spacing; spaces++) {
+						cout << " ";
+					}
+					cout << "|" << endl;
+					cout << "+------------------------------------------------------------------------+" << endl;
+					counter++;
+				}
+				else {
+					cout << "|  " << counter << "   |     " << current->titem.getTopicName();
+					for (int spaces = 0; spaces < spacing; spaces++) {
+						cout << " ";
+					}
+					cout << "|" << endl;
+					cout << "+------------------------------------------------------------------------+" << endl;
+					counter++;
+				}
+				
 
 
 				//cout << current->tnext->tkey << " : " << current->tnext->titem.getTopicName() << endl;

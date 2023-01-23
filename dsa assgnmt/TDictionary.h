@@ -51,7 +51,7 @@ class TDictionary
 		int getLength();
 
 		//display the topics in the Dictionary
-		void printAllPost();
+		void displayTopics();
 
 };
 

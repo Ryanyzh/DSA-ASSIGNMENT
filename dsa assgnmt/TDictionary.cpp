@@ -108,14 +108,35 @@ bool TDictionary::isEmpty() { return size == 0; }
 
 int TDictionary::getLength() { return size; }
 
-void TDictionary::printAllPost() {
+void TDictionary::displayTopics() {
+	int spacing = 0;
+	cout << "\n\n" << endl;
+	cout << "+------------------------------------------------------------------------+" << endl;
+	cout << "| Topic |     Name                                                       |" << endl;
+	cout << "+------------------------------------------------------------------------+" << endl;
 	for (int i = 0; i < HT_MAX_SIZE; i++) {
 		TNode* current = new TNode;
 		current = items[i];
 		if (current != NULL) {
-			cout << current->tkey << " : " << current->titem.getTopicName() << endl;
+			spacing = 64 - 3 - current->titem.getTopicName().length();
+			cout << "|   " << i+1 << "   |     " << current->titem.getTopicName();
+			for (int spaces = 0; spaces < spacing; spaces++) {
+				cout << " ";
+			}
+			cout << "|" << endl;
+			cout << "+------------------------------------------------------------------------+" << endl;
+			//cout << current->tkey << " : " << current->titem.getTopicName() << endl;
 			while (current->tnext != NULL) {
-				cout << current->tnext->tkey << " : " << current->tnext->titem.getTopicName() << endl;
+				spacing = 64 - 3 - current->titem.getTopicName().length();
+				cout << "|   " << i + 1 << "   |     " << current->titem.getTopicName();
+				for (int spaces = 0; spaces < spacing; spaces++) {
+					cout << " ";
+				}
+				cout << "|" << endl;
+				cout << "+------------------------------------------------------------------------+" << endl;
+
+
+				//cout << current->tnext->tkey << " : " << current->tnext->titem.getTopicName() << endl;
 				current = current->tnext;
 			}
 		}

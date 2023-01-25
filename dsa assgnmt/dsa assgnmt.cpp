@@ -33,10 +33,10 @@ vector<char> specialchar;
 vector<int> mainOptions;
 vector<int> postOptions;
 int pageState;
+string currentTopicName;
 
 
 void displayBanner();             // function to display banner
-void displayTopics();             // function to display topics
 bool displaySignInScreen();
 bool displaySignUpScreen();
 void displayMainMenu();
@@ -50,6 +50,7 @@ bool validateUsernameInput(string username);
 bool validatePasswordInput(string password);
 bool checkSpecialCharacters(string p);
 bool checkInteger(string input);
+bool validateTopicName(string nameOfTopic);
 
 
 
@@ -61,99 +62,109 @@ int main()
     int postOption = -1;
     bool signInStatus = false;
     bool signUpStatus = false;
-    while ((currentUser.getUsername() == "" || currentUser.getPassword() == "") && signInOption != 0) {
-        while (signInOption != 1 && signInOption != 2) {
-            displaySignInMenu();
-            signInOption = getOptionInput();
-        }
-        if (signInOption == 1) {
-            while (!signInStatus) {
-                signInStatus = displaySignInScreen();
+    while (signInOption != 0 && mainOption != 0 && postOption != 0) {
+        while (currentUser.getUsername() == "" || currentUser.getPassword() == "") {
+            while (signInOption != 1 && signInOption != 2) {
+                displaySignInMenu();
+                signInOption = getOptionInput();
+            }
+            if (signInOption == 1) {
+                while (!signInStatus) {
+                    signInStatus = displaySignInScreen();
+                }
+                pageState = 1;
+                displayBanner();
+            }
+            else {
+                while (!signUpStatus) {
+                    signUpStatus = displaySignUpScreen();
+                }
+                pageState = 1;
+                displayBanner();
             }
         }
-        else {
-            while (!signUpStatus) {
-                signUpStatus = displaySignUpScreen();
-            }
-        }
-    }
 
-    // pageState 0 = not set
-    // pageState 1 = main menu page
-    // pageState 2 = post menu page
-    pageState = 1;
-    displayBanner();
-    while ((currentUser.getUsername() != "" || currentUser.getPassword() != "") && mainOption != 0 && pageState == 1) {
-        while (!count(mainOptions.begin(), mainOptions.end(), mainOption)) {
-            displayMainMenu();
-            mainOption = getOptionInput();
+        // pageState 0 = not set
+        // pageState 1 = main menu page
+        // pageState 2 = post menu page
+        
+        while ((currentUser.getUsername() != "" || currentUser.getPassword() != "") && pageState == 1) {
+            while (!count(mainOptions.begin(), mainOptions.end(), mainOption)) {
+                displayMainMenu();
+                mainOption = getOptionInput();
+            }
+            if (count(mainOptions.begin(), mainOptions.end(), mainOption)) {
+                if (mainOption == 1) {
+                    topicDictionary.displayTopics();
+                    mainOption = -1;
+                }
+                else if (mainOption == 2) {
+                    bool topicNameValid = false;
+                    Topic newTopic = Topic();
+                    string topicName = "";
+                    while (topicNameValid == false) {
+                        cout << endl;
+                        cout << ">>  Enter new Topic name:  ";
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        getline(cin, topicName);
+                        cout << endl;
+                        topicNameValid = validateTopicName(topicName);
+                    }
+                    newTopic.setTopicName(topicName);
+                    topicDictionary.add(topicName, newTopic);
+                    mainOption = -1;
+                }
+                else if (mainOption == 3) {
+                    cout << "searching users" << endl;
+                    mainOption = -1;
+                    // Insert Codes Here
+                }
+                else if (mainOption == 4) {
+                    cout << "searching topics" << endl;
+                    mainOption = -1;
+                    // Insert Codes Here
+                }
+                else {
+                    pageState = 2;
+                    break;
+                }
+            }
         }
-        if (count(mainOptions.begin(), mainOptions.end(), mainOption)) {
-            if (mainOption == 1) {
-                topicDictionary.displayTopics();
-                mainOption = -1;
-            }
-            else if (mainOption == 2) {
-                Topic newTopic = Topic();
-                string topicName = "";
-                cout << endl;
-                cout << ">>  Enter new Topic name:  ";
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                getline(cin, topicName);
-                cout << endl;
 
-                newTopic.setTopicName(topicName);
-                topicDictionary.add(topicName, newTopic);
-                mainOption = -1;
+
+        while ((currentUser.getUsername() != "" || currentUser.getPassword() != "") && pageState == 2) {
+            while (!count(postOptions.begin(), postOptions.end(), postOption)) {
+                displayPostMenu();
+                postOption = getOptionInput();
             }
-            else if (mainOption == 3) {
-                cout << "searching users" << endl;
-                mainOption = -1;
+            if (postOption == 1) {
                 // Insert Codes Here
             }
-            else if (mainOption == 4) {
-                cout << "searching topics" << endl;
-                mainOption = -1;
+            else if (postOption == 2) {
+                // Insert Codes Here
+            }
+            else if (postOption == 3) {
+                // Insert Codes Here
+            }
+            else if (postOption == 4) {
+                // Insert Codes Here
+            }
+            else if (postOption == 5) {
+                // Insert Codes Here
+            }
+            else if (postOption == 6) {
+                // Insert Codes Here
+            }
+            else if (postOption == 7) {
                 // Insert Codes Here
             }
             else {
-                pageState = 2;
+                pageState = 1;
                 break;
             }
         }
     }
-
-
-    while ((currentUser.getUsername() != "" || currentUser.getPassword() != "") && postOption != 0 && pageState == 2) {
-        while (!count(postOptions.begin(), postOptions.end(), postOption)) {
-            displayPostMenu();
-            postOption = getOptionInput();
-        }
-        if (postOption == 1) {
-            // Insert Codes Here
-        }
-        else if (postOption == 2) {
-            // Insert Codes Here
-        }
-        else if (postOption == 3) {
-            // Insert Codes Here
-        }
-        else if (postOption == 4) {
-            // Insert Codes Here
-        }
-        else if (postOption == 5) {
-            // Insert Codes Here
-        }
-        else if (postOption == 6) {
-            // Insert Codes Here
-        }
-        else if (postOption == 7) {
-            // Insert Codes Here
-        }
-        else {
-            pageState = 1;
-        }
-    }
+    
 
 
     while (signInOption == 0 || mainOption == 0 || postOption == 0) {
@@ -161,54 +172,6 @@ int main()
         exit(0);
     }
     
-    
-    
-    
-    /*
-    switch (mainOption) {
-    case 1:
-        cout << "1" << endl;
-        mainOption = 1;
-        //enter code here
-    case 2:
-        cout << "2" << endl;
-        mainOption = 2;
-        //enter code here
-    case 3:
-        cout << "3" << endl;
-        mainOption = 3;
-        //enter code here
-    case 4:
-        cout << "4" << endl;
-        mainOption = 4;
-        //enter code here
-    case 5:
-        cout << "5" << endl;
-        mainOption = 5;
-        //enter code here
-    case 6:
-        cout << "6" << endl;
-        mainOption = 6;
-        //enter code here
-    case 7:
-        cout << "7" << endl;
-        mainOption = 7;
-        //enter code here
-    case 8:
-        cout << "8" << endl;
-        mainOption = 8;
-        //enter code here
-    case 9:
-        cout << "9" << endl;
-        mainOption = 9;
-        //enter code here
-    default:
-        cout << "Exiting Programme" << endl;
-        break;
-    }
-    */
-
-
     return 0;
 }
 
@@ -240,6 +203,8 @@ void init() {
     currentUser = User();
     currentUser.setUsername("");
     currentUser.setPassword("");
+
+    currentTopicName = "";
 }
 
 // function to display main menu
@@ -292,10 +257,16 @@ void displayBanner()
 };
 
 
-void displayTopics()
-{
-    
-};
+bool validateTopicName(string nameOfTopic) {
+    for (char chr : nameOfTopic) {
+        if (iswalnum(chr) == false) {
+            cout << "[ERROR] Your input can only consists of alphabets and numbers. Please try again." << endl;
+            return false;
+        }
+    }
+    return true;
+}
+
 
 
 void displayMainMenu() {
@@ -491,7 +462,10 @@ int getOptionInput() {
         cin >> input;
         cout << endl;
         isInteger = checkInteger(input);
-        cout << "[ERROR] Only (integer) numbers are accepted. Pls try again." << "\342\230\272" << "\t" << endl;
+        if (checkInteger(input) == false) {
+            cout << "[ERROR] Only (integer) numbers are accepted. Pls try again." << endl;
+        }
+        
     }
     
     return stoi(input);

@@ -27,9 +27,8 @@ int TDictionary::hash(KeyType key) { //use string or int
 	return hashCode % HT_MAX_SIZE;
 }
 
-void output(string name) {
-	int spacing = 0;
-	int counter = 1;
+/*
+void output(string name, int spacing, int counter) {
 	spacing = 64 - 5 - (int)name.length();
 	if (counter < 10) {
 		cout << "|   " << counter << "   |     " << name;
@@ -50,6 +49,7 @@ void output(string name) {
 		counter++;
 	}
 }
+*/
 
 bool TDictionary::add(KeyType newKey, ItemType newItem) {
 	int index = hash(newKey);
@@ -133,9 +133,9 @@ bool TDictionary::isEmpty() { return size == 0; }
 int TDictionary::getLength() { return size; }
 
 void TDictionary::displayTopics() {
-	//int counter = 1;
-	//int spacing = 0;
-	cout << "\n\n" << endl;
+	int counter = 1;
+	int spacing = 0;
+	//cout << "\n\n" << endl;
 	cout << "+------------------------------------------------------------------------+" << endl;
 	cout << "| Topic |     Name                                                       |" << endl;
 	cout << "+------------------------------------------------------------------------+" << endl;
@@ -143,8 +143,8 @@ void TDictionary::displayTopics() {
 		TNode* current = new TNode;
 		current = items[i];
 		if (current != NULL) {
-			output(current->titem.getTopicName());
-			/*
+			//output(current->titem.getTopicName(), spacing, counter);
+			
 			spacing = 64 - 5 - (int)current->titem.getTopicName().length();
 			if (counter < 10) {
 				cout << "|   " << counter << "   |     " << current->titem.getTopicName();
@@ -164,12 +164,12 @@ void TDictionary::displayTopics() {
 				cout << "+------------------------------------------------------------------------+" << endl;
 				counter++;
 			}
-			*/
+			
 			
 			//cout << current->tkey << " : " << current->titem.getTopicName() << endl;
 			while (current->tnext != NULL) {
-				output(current->titem.getTopicName());
-				/*
+				//output(current->titem.getTopicName(), spacing, counter);
+				
 				spacing = 64 - 5 - (int)current->titem.getTopicName().length();
 				if (counter < 10) {
 					cout << "|   " << counter << "   |     " << current->titem.getTopicName();
@@ -189,7 +189,7 @@ void TDictionary::displayTopics() {
 					cout << "+------------------------------------------------------------------------+" << endl;
 					counter++;
 				}
-				*/
+				
 				
 
 
@@ -199,6 +199,35 @@ void TDictionary::displayTopics() {
 		}
 	}
 	cout << "\n\n" << endl;
+}
+
+
+string TDictionary::returnTopicName(int topicNum) {
+	int skip = topicNum - 1;
+	for (int i = 0; i < HT_MAX_SIZE; i++) {
+		TNode* current = new TNode;
+		current = items[i];
+		if (current != NULL) {
+			if (skip != 0) {
+				skip--;
+			}
+			else {
+				return current->titem.getTopicName();
+			}
+			
+
+			//cout << current->tkey << " : " << current->titem.getTopicName() << endl;
+			while (current->tnext != NULL) {
+				if (skip != 0) {
+					skip--;
+				}
+				else {
+					return current->titem.getTopicName();
+				}
+				current = current->tnext;
+			}
+		}
+	}
 }
 
 

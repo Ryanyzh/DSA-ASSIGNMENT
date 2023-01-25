@@ -3,6 +3,7 @@
 #include "Reply.h"
 #include "RStack.h"
 #include "User.h"
+#include "ReactionList.h"
 #include <string>
 #include <ctime>
 
@@ -15,8 +16,7 @@ class Post
 		string Pcontent;
 		char* Pdatetime;
 		User user;
-		int likes;
-		//Array reactions (To be implemented);
+		ReactionList reactions;
 		RStack replyStack;
 		
 

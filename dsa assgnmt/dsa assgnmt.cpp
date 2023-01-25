@@ -24,6 +24,9 @@
 #include "User.h"
 
 
+// \x18\x19 
+// only 5 reactions combined : upvote, downvote, happy, sad, shock, cry
+
 using namespace std;
 
 User currentUser;
@@ -42,6 +45,7 @@ bool displaySignUpScreen();
 void displayMainMenu();
 void displaySignInMenu();
 void displayPostMenu();
+void displayReactionsMenu();
 void init();
 int getOptionInput();
 int hashing(string s);
@@ -51,6 +55,7 @@ bool validatePasswordInput(string password);
 bool checkSpecialCharacters(string p);
 bool checkInteger(string input);
 bool validateTopicName(string nameOfTopic);
+bool validateTopicNumber(int topicNum);
 
 
 
@@ -63,7 +68,9 @@ int main()
     bool signInStatus = false;
     bool signUpStatus = false;
     while (signInOption != 0 && mainOption != 0 && postOption != 0) {
+        
         while (currentUser.getUsername() == "" || currentUser.getPassword() == "") {
+            signInOption = -999;
             while (signInOption != 1 && signInOption != 2) {
                 displaySignInMenu();
                 signInOption = getOptionInput();
@@ -89,12 +96,14 @@ int main()
         // pageState 2 = post menu page
         
         while ((currentUser.getUsername() != "" || currentUser.getPassword() != "") && pageState == 1) {
+            mainOption = -999;
             while (!count(mainOptions.begin(), mainOptions.end(), mainOption)) {
                 displayMainMenu();
                 mainOption = getOptionInput();
             }
             if (count(mainOptions.begin(), mainOptions.end(), mainOption)) {
                 if (mainOption == 1) {
+                    cout << "\n\n" << endl;
                     topicDictionary.displayTopics();
                     mainOption = -1;
                 }
@@ -133,12 +142,24 @@ int main()
 
 
         while ((currentUser.getUsername() != "" || currentUser.getPassword() != "") && pageState == 2) {
+            postOption = -999;
             while (!count(postOptions.begin(), postOptions.end(), postOption)) {
                 displayPostMenu();
                 postOption = getOptionInput();
             }
             if (postOption == 1) {
-                // Insert Codes Here
+                int topicSelected = -1;
+                bool topicSelectionSuccess = false;
+                while (topicSelectionSuccess == false) {
+                    cout << "\n\n" << endl;
+                    cout << "+------------------------------------------------------------------------+" << endl;
+                    cout << "|  Choose a topic                                                        |" << endl;
+                    topicDictionary.displayTopics();
+                    topicSelected = getOptionInput();
+                    topicSelectionSuccess = validateTopicNumber(topicSelected);
+                }
+                cout << currentTopicName << endl;
+                
             }
             else if (postOption == 2) {
                 // Insert Codes Here
@@ -205,6 +226,7 @@ void init() {
     currentUser.setPassword("");
 
     currentTopicName = "";
+    pageState = 0;
 }
 
 // function to display main menu
@@ -258,13 +280,13 @@ void displayBanner()
 
 
 bool validateTopicName(string nameOfTopic) {
-    for (char chr : nameOfTopic) {
-        if (iswalnum(chr) == false) {
-            cout << "[ERROR] Your input can only consists of alphabets and numbers. Please try again." << endl;
-            return false;
-        }
+    if (iswalnum(nameOfTopic[0]) && nameOfTopic.length() >= 1 && nameOfTopic.length() <= 50) {
+        return true;
     }
-    return true;
+    else {
+        cout << "The first character needs to be an alphanumeric character and only 1 to 50 characters are allowed." << endl;
+        return false;
+    }
 }
 
 
@@ -287,15 +309,27 @@ void displayPostMenu() {
     cout << "\n\n" << endl;
     cout << "+------------------------------------------------------------------------+" << endl;
     cout << "|  Options                                                               |" << endl;
+    cout << "+-----+-----------------------------------------+-----+------------------+" << endl;
+    cout << "|  1  | View Post(s) And Reply(ies)             |  2  | Edit Post        |" << endl;
     cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
-    cout << "|  1  | View Post(s)    |  2  | Edit Post       |  3  | Delete Post      |" << endl;
+    cout << "|  3  | Delete Post     |  4  | Add Reply       |  5  |  Add Reactions   |" << endl;
     cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
-    cout << "|  4  | Like Post       |  5  | Add Reply       |  6  | Add Reaction(s)  |" << endl;
-    cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
-    cout << "|  7  | Search Post     |  8  | Return Back To Main Menu                 |" << endl;
+    cout << "|  6  | Search Post     |  7  | Return Back To Main Menu                 |" << endl;
     cout << "+-----+-----------------+-----+------------------------------------------+" << endl;
     cout << "|  0  | Exit Program                                                     |" << endl;
     cout << "+-----+------------------------------------------------------------------+" << endl;
+}
+
+
+void displayReactionsMenu() {
+    cout << "\n\n" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|  Options                                                               |" << endl;
+    cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
+    cout << "|  1  | \x18 [Upvote]      |  2  | \x19 [Downvote]    |  3  | :) [Happy]       |" << endl;
+    cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
+    cout << "|  4  | :( [Sad]        |  5  | :0 [Shock]      |  6  |  :'( [Cry]       |" << endl;
+    cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
 }
 
 
@@ -513,5 +547,22 @@ void displaySignInMenu() {
     cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
     cout << "|  1  | Sign In         |  2  | Sign Up         |  0  | Exit Program     |" << endl;
     cout << "+-----+-----------------+-----+-----------------+-----+------------------+" << endl;
+};
+
+
+
+
+bool validateTopicNumber(int topicNum) {
+    if (topicNum == 0) {
+        return false;
+    }
+    currentTopicName = topicDictionary.returnTopicName(topicNum);
+    if (currentTopicName != "") {
+        return true;
+    }
+    else {
+        cout << "[ERROR] Invalid number inputted. Pls try again." << endl;
+        return false;
+    }
 };
 

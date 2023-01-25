@@ -9,9 +9,9 @@ Post::Post() {
 	Ptitle = "";
 	Pcontent = "";
 	Pdatetime = { nullptr };
-	likes = 0;
 	user = User();  //HOW TO SET THE USER TO NULL?
 	replyStack = RStack() ;
+	reactions = ReactionList();
 };
 
 Post::~Post() {

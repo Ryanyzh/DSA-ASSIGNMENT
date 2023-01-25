@@ -53,5 +53,9 @@ class TDictionary
 		//display the topics in the Dictionary
 		void displayTopics();
 
+		string returnTopicName(int topicNum);
+
+		//Node* 
+
 };
 

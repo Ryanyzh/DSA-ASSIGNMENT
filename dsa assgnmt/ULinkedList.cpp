@@ -135,3 +135,19 @@ bool ULinkedList::checkCredentials(string u, string p) {
 	}
 	return false;
 }
+
+// This function returns the searched user
+User ULinkedList::searchUser(string username) {
+	UNode* current = uFirstNode;
+	return searchUser(username, current);
+}
+
+// This is the recursive function for the searchUser above
+User ULinkedList::searchUser(string username, UNode* userNode) {
+	if (userNode->uitem.getUsername() == username) {
+		return userNode->uitem;
+	}
+	else {
+		searchUser(username, userNode->unext);
+	}
+}

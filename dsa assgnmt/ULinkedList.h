@@ -51,6 +51,11 @@ class ULinkedList
 
 		//check if user input correspond to the saved credentials
 		bool checkCredentials(string u, string p);
+
+		//search user with username
+		User searchUser(string username);
+		//recursive function for the above search function
+		User searchUser(string username, UNode* userNode);
 };
 
 

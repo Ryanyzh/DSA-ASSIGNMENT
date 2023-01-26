@@ -29,14 +29,14 @@
 
 using namespace std;
 
-User currentUser;
-ULinkedList userList;
-TDictionary topicDictionary;
-vector<char> specialchar;
-vector<int> mainOptions;
-vector<int> postOptions;
-int pageState;
-string currentTopicName;
+User currentUser;               // User Obj for current user
+ULinkedList userList;           // List of users
+TDictionary topicDictionary;    // Dictionary (Hash Table) of topics
+vector<char> specialchar;       // Vector of special chars (!, @, #, $ etc..)
+vector<int> mainOptions;        // Vector of main options (Topic Level Options)
+vector<int> postOptions;        // Vector of post options (Post Level Options)  
+int pageState;                  // int to store page state
+string currentTopicName;        // string to store current topic name
 
 
 void displayBanner();             // function to display banner
@@ -108,9 +108,11 @@ int main()
                     mainOption = -1;
                 }
                 else if (mainOption == 2) {
-                    bool topicNameValid = false;
-                    Topic newTopic = Topic();
-                    string topicName = "";
+                    bool topicNameValid = false;    // boolean topic name validation
+                    Topic newTopic = Topic();       // Create new Topic Obj
+                    string topicName = "";          // string variable to store topic name
+
+                    // Validate topic name
                     while (topicNameValid == false) {
                         cout << endl;
                         cout << ">>  Enter new Topic name:  ";
@@ -119,14 +121,20 @@ int main()
                         cout << endl;
                         topicNameValid = validateTopicName(topicName);
                     }
-                    newTopic.setTopicName(topicName);
-                    topicDictionary.add(topicName, newTopic);
-                    mainOption = -1;
+                    newTopic.setTopicName(topicName);           // Set topic name to Topic Obj
+                    topicDictionary.add(topicName, newTopic);   // Add topic Obj to Dictionary (Topic Hash Table)
+                    mainOption = -1;                            
                 }
                 else if (mainOption == 3) {
                     cout << "searching users" << endl;
                     mainOption = -1;
+
                     // Insert Codes Here
+
+                    // SEARCH USER
+                    // string username = **USER INPUT FUNCTION  HERE**
+                    // User searchedUser = userList.searchUser(username); //This returns a user obj
+                    // **DISPLAY USER DETAILS UI FUNCTION HERE**
                 }
                 else if (mainOption == 4) {
                     cout << "searching topics" << endl;

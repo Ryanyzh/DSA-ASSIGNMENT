@@ -201,7 +201,6 @@ void TDictionary::displayTopics() {
 	cout << "\n\n" << endl;
 }
 
-
 string TDictionary::returnTopicName(int topicNum) {
 	int skip = topicNum - 1;
 	for (int i = 0; i < HT_MAX_SIZE; i++) {

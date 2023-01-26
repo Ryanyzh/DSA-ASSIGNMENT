@@ -17,5 +17,6 @@ class User
 		string getPassword();
 		void setUsername(string);
 		void setPassword(string);
+		void displayUserDetails();
 };
 

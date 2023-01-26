@@ -134,7 +134,11 @@ int main()
                     // SEARCH USER
                     // string username = **USER INPUT FUNCTION  HERE**
                     // User searchedUser = userList.searchUser(username); //This returns a user obj
-                    // **DISPLAY USER DETAILS UI FUNCTION HERE**
+                    // searchedUser.displayUserDetails();                 //This function is in User.cpp
+
+                    //if (searchedUser != NULL) {
+                    //    searchedUser.displayUserDetails()  //This function is in User.cpp
+                    //}
                 }
                 else if (mainOption == 4) {
                     cout << "searching topics" << endl;
@@ -143,8 +147,11 @@ int main()
 
                     // SEARCH TOPIC
                     // string topicName = **USER INPUT FUNCTION HERE**
-                    // Topic topicName = topicDictionary.searchTopic(topicName); //This returns a topic obj
-                    // **DISPLAY TOPIC DETAILS UI FUNCTION HERE**
+                    // Topic searchedTopic = topicDictionary.searchTopic(topicName); //This returns a topic obj
+                    
+                    //if (searchedTopic != NULL) {
+                    //    searchedTopic.displayTopicDetails()  //This function is in Topic.cpp
+                    //}
                     
                 }
                 else {

@@ -27,3 +27,7 @@ void User::setUsername(string u) {
 void User::setPassword(string p) {
 	password = p;
 };
+
+void User::displayUserDetails() {
+	// Insert code here
+}

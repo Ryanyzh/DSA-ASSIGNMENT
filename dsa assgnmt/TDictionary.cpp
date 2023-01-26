@@ -229,5 +229,23 @@ string TDictionary::returnTopicName(int topicNum) {
 	}
 }
 
+// Function to serch topic by name
+Topic TDictionary::searchTopic(string topicName) {
+	TNode* current = items[hash(topicName)];
+	return searchTopic(topicName, current);
+}
+
+// Recusrive search function
+Topic TDictionary::searchTopic(string topicName, TNode* topicNode) {
+	if (topicNode->titem.getTopicName() == topicName) {
+		return topicNode->titem;
+	}
+	else {
+		searchTopic(topicName, topicNode->tnext);
+	}
+}
+
+
+
 
 

@@ -27,3 +27,7 @@ bool Topic::addPost(Post post) {
 void Topic::removePost(int index) {
 	postList.remove(index);
 }
+
+void Topic::displayTopicDetails() {
+	// Insert code here
+}

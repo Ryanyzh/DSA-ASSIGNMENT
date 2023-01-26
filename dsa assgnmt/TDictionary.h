@@ -57,5 +57,12 @@ class TDictionary
 
 		//Node* 
 
+		//function to search topic by name
+		Topic searchTopic(string topicName);
+
+		//recursive funtion for search topic
+		Topic searchTopic(string topicName, TNode* topicNode);
+
+
 };
 

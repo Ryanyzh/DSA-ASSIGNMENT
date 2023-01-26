@@ -140,6 +140,12 @@ int main()
                     cout << "searching topics" << endl;
                     mainOption = -1;
                     // Insert Codes Here
+
+                    // SEARCH TOPIC
+                    // string topicName = **USER INPUT FUNCTION HERE**
+                    // Topic topicName = topicDictionary.searchTopic(topicName); //This returns a topic obj
+                    // **DISPLAY TOPIC DETAILS UI FUNCTION HERE**
+                    
                 }
                 else {
                     pageState = 2;

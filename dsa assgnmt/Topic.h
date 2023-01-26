@@ -26,5 +26,8 @@ class Topic
 
 		//Remove post from topic
 		void removePost(int index);
+
+		//Display topic details?
+		void displayTopicDetails();
 };
 
